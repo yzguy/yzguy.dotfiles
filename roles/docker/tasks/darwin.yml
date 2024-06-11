@@ -1,0 +1,5 @@
+---
+- name: docker | package
+  community.general.homebrew_cask:
+    name: "{{ docker_package.darwin }}"
+    state: present

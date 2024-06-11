@@ -1,0 +1,18 @@
+---
+- name: iterm2 | package
+  community.general.homebrew_cask:
+    name: "{{ iterm2_package }}"
+    state: present
+
+- name: iterm2 | directory
+  ansible.builtin.file:
+    path: '{{ iterm2_config_directory }}'
+    state: directory
+    mode: '0755'
+
+- name: iterm2 | themes
+  ansible.builtin.get_url:
+    url: '{{ item.url }}'
+    dest: '{{ iterm2_config_directory }}/{{ item.name }}.itermcolors'
+    mode: '0755'
+  loop: '{{ iterm2_themes }}'

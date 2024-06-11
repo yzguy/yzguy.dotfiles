@@ -51,6 +51,10 @@ bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
+# window movement shortcuts
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'

@@ -9,7 +9,7 @@ license:
 - GPL-2.0-or-later
 
 dependencies:
-  - "community.general": "*"
+  "community.general": "*"
 
 tags: ["dotfiles"]
 repository: https://github.com/yzguy/yzguy.dotfiles

@@ -1,0 +1,8 @@
+# Gitconfig
+[user]
+    email = {{ git_email | mandatory }}
+    name = {{ git_name | mandatory }}
+[core]
+    editor = nvim
+[pull]
+    rebase = false

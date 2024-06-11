@@ -1,0 +1,20 @@
+---
+- ansible.builtin.include_tasks:
+    file: darwin.yml
+  when: ansible_system == "Darwin"
+
+- ansible.builtin.include_tasks:
+    file: linux.yml
+  when: ansible_system == "Linux"
+
+- name: git | .gitconfig
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: ~/.gitconfig
+    mode: '0644'
+
+- name: git | .gitignore
+  ansible.builtin.template:
+    src: gitignore.j2
+    dest: ~/.gitignore
+    mode: '0644'

@@ -1,0 +1,5 @@
+---
+- name: asdf | package
+  community.general.homebrew:
+    name: "{{ asdf_package }}"
+    state: present

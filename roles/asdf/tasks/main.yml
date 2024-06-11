@@ -1,0 +1,19 @@
+---
+- ansible.builtin.include_tasks:
+    file: darwin.yml
+  when: ansible_system == "Darwin"
+
+- ansible.builtin.include_tasks:
+    file: linux.yml
+  when: ansible_system == "Linux"
+
+- name: asdf | plugins
+  ansible.builtin.command: "asdf plugin add {{ item.name }} {{ item.url if item.url is defined }}"
+  loop: "{{ asdf_plugins }}"
+  changed_when: false
+
+- name: adsf | .tool-versions
+  ansible.builtin.template:
+    src: tool-versions.j2
+    dest: ~/.tool-versions
+    mode: '0644'

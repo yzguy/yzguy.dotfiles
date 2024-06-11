@@ -1,0 +1,3 @@
+{%- for tool, versions in asdf_tool_versions.items() +%}
+{{ tool }} {{ versions | join(' ') }}
+{%- endfor +%}

@@ -1,0 +1,14 @@
+---
+- name: neovim | package
+  community.general.homebrew:
+    name: "{{ neovim_package }}"
+    state: present
+
+- name: neovim | symlink vi/vim
+  ansible.builtin.file:
+    src: "{{ homebrew_directories.bin }}/nvim"
+    dest: "{{ item }}"
+    state: link
+  loop:
+    - "{{ homebrew_directories.bin }}/vi"
+    - "{{ homebrew_directories.bin }}/vim"

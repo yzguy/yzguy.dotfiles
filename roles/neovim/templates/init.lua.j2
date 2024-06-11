@@ -1,0 +1,76 @@
+local vim = vim
+
+local Plug = vim.fn['plug#']
+vim.call('plug#begin')
+  Plug('arcticicestudio/nord-vim')
+  Plug('catppuccin/nvim', { ['as'] = 'catppuccin' })
+  {%- for neovim_plugin in neovim_plugins +%}
+  Plug('{{ neovim_plugin.name }}')
+  {%- endfor +%}
+vim.call('plug#end')
+
+vim.g.mapleader = ","
+
+vim.opt.encoding="utf-8"
+
+vim.opt.syntax = "on"
+vim.opt.termguicolors = true
+
+-- Set Nord background to be transparent
+vim.cmd([[
+" Override Nord Theme background to be transparent
+augroup nord-theme-overrides
+  autocmd!
+  autocmd ColorScheme nord highlight Normal guibg=NONE ctermbg=NONE
+augroup END
+]])
+
+-- Set Catpuccin background to be transparent
+-- https://github.com/catppuccin/nvim
+require("catppuccin").setup({
+  flavour = "macchiato",
+  transparent_background = true,
+  no_italic = true,
+  integrations = {
+  },
+})
+
+-- lightline https://github.com/itchyny/lightline.vim
+vim.g.lightline = {
+  colorscheme="catppuccin",
+}
+
+vim.cmd.colorscheme "catppuccin"
+
+-- https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+
+-- UI
+vim.opt.number = true -- Show line numbers
+vim.opt.scrolloff = 3 -- Set scrolling three lines before bottom
+
+vim.cmd([[
+" Remaps
+imap jj <Esc>
+
+" Disable Arrow keys in Normal mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" NERDTree (File Explorer)
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+]])

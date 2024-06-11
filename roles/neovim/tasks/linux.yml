@@ -1,0 +1,28 @@
+---
+- name: neovim | uninstall vim
+  ansible.builtin.apt:
+    pkg: vim
+    state: absent
+  become: true
+
+- name: neovim | repository
+  ansible.builtin.apt_repository:
+    repo: "{{ neovim_apt_repo }}"
+    codename: "{{ ansible_distribution_release }}"
+  become: true
+
+- name: neovim | package
+  ansible.builtin.apt:
+    pkg: "{{ neovim_package }}"
+  become: true
+
+- name: neovim | update alternatives
+  community.general.alternatives:
+    name: "{{ item }}"
+    path: /usr/bin/nvim
+    link: "/usr/bin/{{ item }}"
+  loop:
+    - vi
+    - vim
+    - editor
+  become: true

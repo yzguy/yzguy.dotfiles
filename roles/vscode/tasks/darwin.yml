@@ -1,0 +1,11 @@
+---
+- name: vscode | package
+  community.general.homebrew_cask:
+    name: "{{ vscode_package }}"
+    state: present
+
+- name: vscode | settings (darwin)
+  ansible.builtin.template:
+    src: settings.json.j2
+    dest: "{{ vscode_settings_file.darwin }}"
+    mode: '0644'

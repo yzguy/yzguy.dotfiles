@@ -1,0 +1,13 @@
+---
+- ansible.builtin.include_tasks:
+    file: darwin.yml
+  when: ansible_system == "Darwin"
+
+- ansible.builtin.include_tasks:
+    file: linux.yml
+  when: ansible_system == "Linux"
+
+- name: vscode | extensions
+  ansible.builtin.command: "code --install-extension {{ item }}"
+  loop: "{{ vscode_extensions }}"
+  changed_when: false

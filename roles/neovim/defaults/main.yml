@@ -1,2 +1,4 @@
 ---
-neovim_plugins: []
+neovim_plugins:
+  - name: itchyny/lightline.vim
+  - name: preservim/nerdtree

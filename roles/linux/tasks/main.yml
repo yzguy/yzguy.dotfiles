@@ -1,0 +1,30 @@
+---
+- name: linux | default settings
+  shell: "{{ item }}"
+  loop: "{{ linux_defaults }}"
+  changed_when: false
+  when: not linux_skip_defaults
+
+- name: linux | packages
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    pkg: "{{ item }}"
+  loop: "{{ linux_packages }}"
+  become: true
+
+- name: linux | zsh shell
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
+  become: true
+
+- name: linux | passwordless sudo
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: '^%sudo.*'
+    line: '%sudo  ALL=(ALL:ALL) NOPASSWD: ALL'
+    owner: root
+    group: root
+    mode: '0440'
+  become: true

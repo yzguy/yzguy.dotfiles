@@ -2,3 +2,4 @@
 vscode_package: visual-studio-code
 vscode_settings_file:
   darwin: '~/Library/Application Support/Code/User/settings.json'
+  linux: "~/.config/Code/User/settings.json"

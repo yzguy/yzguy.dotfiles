@@ -1,0 +1,10 @@
+---
+- name: task | homebrew tap
+  community.general.homebrew_tap:
+    name: "{{ task_tap }}"
+    state: present
+
+- name: task | package
+  community.general.homebrew:
+    name: "{{ task_package }}"
+    state: present

@@ -56,9 +56,11 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 {%- for tmux_plugin in tmux_plugins +%}
 set -g @plugin '{{ tmux_plugin.name }}'
-{%- for key, value in tmux_plugin.options.items() | default({}) +%}
+{%- if tmux_plugin.options is defined +%}
+{%- for key, value in tmux_plugin.options.items() +%}
 set -g @{{ key }} '{{ value }}'
 {%- endfor +%}
+{%- endif +%}
 {%- endfor %}
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)

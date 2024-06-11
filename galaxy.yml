@@ -1,0 +1,15 @@
+namespace: yzguy
+name: dotfiles
+version: 1.0.0
+readme: README.md
+authors:
+- Adam Smith <zero1three@gmail.com>
+description: Collection of roles for dotfiles
+license:
+- GPL-2.0-or-later
+
+tags: ['dotfiles']
+repository: https://github.com/yzguy/yzguy.dotfiles
+documentation: https://github.com/yzguy/yzguy.dotfiles/README.md
+homepage: https://github.com/yzguy/yzguy.dotfiles
+issues: https://github.com/yzguy/yzguy.dotfiles/issues

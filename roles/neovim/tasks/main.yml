@@ -21,11 +21,11 @@
     recurse: true
     mode: '0755'
 
- - name: neovim | autoload
-   ansible.builtin.get_url:
-     url: "{{ neovim_vim_plug_url }}"
-     dest: "{{ neovim_autoload_directory }}"
-     mode: "0755"
+- name: neovim | autoload
+  ansible.builtin.get_url:
+    url: "{{ neovim_vim_plug_url }}"
+    dest: "{{ neovim_autoload_directory }}"
+    mode: "0755"
 
 - name: neovim | init.lua
   ansible.builtin.template:

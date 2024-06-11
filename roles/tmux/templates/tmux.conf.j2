@@ -61,7 +61,7 @@ set -g @plugin '{{ tmux_plugin.name }}'
 set -g @{{ key }} '{{ value }}'
 {%- endfor +%}
 {%- endif +%}
-{%- endfor %}
+{%- endfor +%}
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

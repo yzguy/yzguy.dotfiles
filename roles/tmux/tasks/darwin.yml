@@ -1,0 +1,5 @@
+---
+- name: tmux | package
+  community.general.homebrew:
+    name: "{{ tmux_package }}"
+    state: present

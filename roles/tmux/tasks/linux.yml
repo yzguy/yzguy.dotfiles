@@ -1,0 +1,7 @@
+---
+- name: tmux | package
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    pkg: "{{ tmux_package }}"
+  become: true

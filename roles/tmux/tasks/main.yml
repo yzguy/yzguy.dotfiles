@@ -1,0 +1,14 @@
+---
+- ansible.builtin.include_tasks:
+    file: darwin.yml
+  when: ansible_system == "Darwin"
+
+- ansible.builtin.include_tasks:
+    file: linux.yml
+  when: ansible_system == "Linux"
+
+- name: tmux | .tmux.conf
+  ansible.builtin.template:
+    src: tmux.conf.j2
+    dest: ~/.tmux.conf
+    mode: '0644'

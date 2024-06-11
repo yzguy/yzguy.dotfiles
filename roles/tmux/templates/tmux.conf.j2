@@ -1,0 +1,65 @@
+# Set Prefix to Ctrl-a
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+# reload tmux.conf
+bind r source-file ~/.tmux.conf
+
+# Start window numbering at 1
+set -g base-index 1
+
+# send command to all panes
+bind y setw synchronize-panes
+
+# enable window renumbering
+set -g renumber-windows on
+
+# Faster keep repetition
+set -s escape-time 0
+
+# Allow mouse actions
+set -g mouse on
+
+# Use VIM keybindings in copy mode
+setw -g mode-keys vi
+
+# Set status bar options
+set -g status-bg black
+set -g status-fg white
+set -g status-left ""
+set -g status-right "#[fg-green]#H"
+
+# split panes using | and -
+bind | split-window -hc "#{pane_current_path}"
+bind - split-window -vc "#{pane_current_path}"
+unbind '"'
+unbind %
+
+# keep current path
+bind c new-window -c "#{pane_current_path}"
+
+# scrollback buffer
+set -g history-limit 9999999
+
+# use mouse to scroll
+unbind -n MouseDrag1Pane
+
+# pane movement shortcuts (vim keys)
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+{%- for tmux_plugin in tmux_plugins +%}
+set -g @plugin '{{ tmux_plugin.name }}'
+{%- for key, value in tmux_plugin.options.items() | default({}) +%}
+set -g @{{ key }} '{{ value }}'
+{%- endfor +%}
+{%- endfor %}
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

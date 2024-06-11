@@ -8,7 +8,10 @@ description: Collection of roles for dotfiles
 license:
 - GPL-2.0-or-later
 
-tags: ['dotfiles']
+dependencies:
+  - "community.general": "*"
+
+tags: ["dotfiles"]
 repository: https://github.com/yzguy/yzguy.dotfiles
 documentation: https://github.com/yzguy/yzguy.dotfiles/README.md
 homepage: https://github.com/yzguy/yzguy.dotfiles

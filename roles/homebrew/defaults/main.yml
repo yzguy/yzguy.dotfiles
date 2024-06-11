@@ -1,0 +1,6 @@
+---
+homebrew_binary: "/opt/homebrew/bin/brew"
+
+homebrew_taps: []
+homebrew_cask_packages: []
+homebrew_packages: []

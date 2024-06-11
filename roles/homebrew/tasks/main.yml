@@ -1,0 +1,49 @@
+---
+- name: homebrew | verify installation
+  ansible.builtin.stat:
+    path: "{{ homebrew_binary }}"
+  register: homebrew_check
+
+- name: homebrew | not installed fact
+  ansible.builtin.set_fact:
+    homebrew_installed: false
+  when: not homebrew_check.stat.exists
+
+- name: homebrew | installed fact
+  ansible.builtin.set_fact:
+    homebrew_installed: true
+    homebrew_directories:
+      base: /opt/homebrew
+      bin: /opt/homebrew/bin
+  when: homebrew_check.stat.exists
+
+- name: homebrew | package # noqa no-changed-when
+  ansible.builtin.shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  environment:
+    NONINTERACTIVE: '1'
+  when: not homebrew_installed
+
+- name: homebrew | taps, casks, packages
+  when: homebrew_installed
+  block:
+    - name: homebrew | update
+      community.general.homebrew:
+        update_homebrew: true
+
+    - name: homebrew | taps
+      community.general.homebrew_tap:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_taps }}"
+
+    - name: homebrew | casks
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_cask_packages }}"
+
+    - name: homebrew | packages
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ homebrew_packages }}"

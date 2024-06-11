@@ -3,7 +3,7 @@
   shell: "{{ item }}"
   loop: "{{ linux_defaults }}"
   changed_when: false
-  when: not linux_skip_defaults
+  when: linux_defaults
 
 - name: linux | packages
   ansible.builtin.apt:

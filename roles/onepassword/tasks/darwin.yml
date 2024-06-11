@@ -1,0 +1,25 @@
+---
+- name: onepassword | homebrew tap
+  community.general.homebrew_tap:
+    name: "{{ onepassword_tap }}"
+    state: present
+
+- name: onepassword | packages
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - "{{ onepassword_gui_package }}"
+    - "{{ onepassword_cli_package }}"
+
+- name: onepassword | home_path
+  ansible.builtin.file:
+    path: '{{ onepassword_home_path }}'
+    state: directory
+    recurse: true
+
+- name: onepassword | symlink agent
+  ansible.builtin.file:
+    src: '{{ onepassword_agent_path }}'
+    dest: '{{ onepassword_agent }}'
+    state: link

@@ -1,0 +1,3 @@
+---
+onepassword_home_path: ~/.1password
+onepassword_agent_path: '~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock'

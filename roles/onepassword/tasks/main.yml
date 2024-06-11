@@ -1,0 +1,12 @@
+---
+- name: onepassword | agent fact
+  ansible.builtin.set_fact:
+    onepassword_agent: '{{ onepassword_home_path }}/agent.sock'
+
+- ansible.builtin.include_tasks:
+    file: darwin.yml
+  when: ansible_system == "Darwin"
+
+- ansible.builtin.include_tasks:
+    file: linux.yml
+  when: ansible_system == "Linux"

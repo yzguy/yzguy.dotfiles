@@ -1,0 +1,56 @@
+---
+macos_defaults:
+
+  ### Trackpad, Mouse, Keyboard, Accessories, etc
+
+  # Set tap to click
+  - defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  - defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  - defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+  # Disable "natural" scrolling
+  - defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+
+  # Set Autohide dock
+  - defaults write com.apple.dock autohide -bool true
+
+  # Set Dock icon size
+  - defaults write com.apple.dock tilesize -int 64
+
+  # Set Dock minimize effect
+  - defaults write com.apple.dock mineffect -string genie
+
+  # Disable dock recent items
+  - defaults write com.apple.dock show-recents -bool no
+
+  ### Finder
+
+  # Show Hidden Files
+  - defaults write com.apple.finder AppleShowAllFiles false
+
+  #  Show path bar
+  - defaults write com.apple.finder ShowPathbar -bool true
+
+  # Always show scrollbars
+  - defaults write com.apple.finder ShowPathbar -bool true
+
+  ### Miscellaneous
+
+  # Disable autocorrect
+  - defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+
+  # Disable auto capitalization
+  - defaults write -g NSAutomaticCapitalizationEnabled -bool false
+
+  # Disables smart dashes
+  - defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+  # Disables automatic period substitutions
+  - defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+  # Disables smart quotes
+  - defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+  # Avoid creating .DS_Store files on network or USB volumes
+  - defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+  - defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true

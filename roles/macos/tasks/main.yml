@@ -1,0 +1,12 @@
+---
+
+- name: macos | defaults
+  ansible.builtin.command: "{{ item }}"
+  loop: "{{ macos_defaults }}"
+  changed_when: false
+
+- name: macos | zsh shell
+  ansible.builtin.user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: "{{ homebrew_directories.bin }}/zsh"
+  become: true

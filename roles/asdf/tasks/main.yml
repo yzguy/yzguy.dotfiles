@@ -23,4 +23,4 @@
     src: default-packages.j2
     dest: "~/.default-{{ item.key }}-packages"
     mode: '0644'
-  loop: "{{ asdf_default_packages }}"
+  loop: "{{ asdf_default_packages | dict2items }}"

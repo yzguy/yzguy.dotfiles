@@ -17,3 +17,10 @@
     src: tool-versions.j2
     dest: ~/.tool-versions
     mode: '0644'
+
+- name: adsf | default-packages
+  ansible.builtin.template:
+    src: default-packages.j2
+    dest: "~/.default-{{ item.key }}-packages"
+    mode: '0644'
+  loop: "{{ asdf_default_packages }}"

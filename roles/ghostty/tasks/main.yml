@@ -1,0 +1,17 @@
+---
+- ansible.builtin.include_tasks:
+    file: linux.yml
+  when: ansible_system == "Linux"
+
+- name: ghostty | configuration directory
+  ansible.builtin.file:
+    path: "{{ ghostty_config_directory }}"
+    state: directory
+    recurse: true
+    mode: "0755"
+
+- name: ghostty | configuration
+  ansible.builtin.template:
+    src: ghostty.j2
+    dest: "{{ ghostty_config_file }}"
+    mode: "0644"

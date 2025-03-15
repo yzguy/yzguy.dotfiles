@@ -1,2 +1,3 @@
 ---
 asdf_package: asdf
+asdf_package_url: "https://github.com/asdf-vm/asdf/releases/download/v{{ asdf_version }}/asdf-v{{ asdf_version }}-{{ ansible_system }}-amd64.tar.gz"

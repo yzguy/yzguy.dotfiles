@@ -1,5 +1,6 @@
 ---
-- name: asdf | repo
-  ansible.builtin.git:
-    repo: https://github.com/asdf-vm/asdf.git
-    dest: ~/.asdf
+- name: asdf | package
+  ansible.builtin.unarchive:
+    src: "{{ asdf_package_url }}"
+    dest: "{{ asdf_install_directory }}"
+    remote_src: true

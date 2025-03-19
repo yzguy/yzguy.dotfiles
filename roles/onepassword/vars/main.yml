@@ -2,3 +2,6 @@
 onepassword_tap: 1password/tap
 onepassword_gui_package: 1password
 onepassword_cli_package: 1password-cli
+onepassword_repo_key: https://downloads.1password.com/linux/keys/1password.asc
+onepassword_repo_key_path: /usr/share/keyrings/1password.asc
+onepassword_repo_url: https://downloads.1password.com/linux/debian/amd64

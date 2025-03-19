@@ -1,12 +1,13 @@
 - name: onepassword | apt key
-  ansible.builtin.apt_key:
-    url: https://downloads.1password.com/linux/keys/1password.asc
-    state: present
+  ansible.builtin.get_url:
+    url: "{{ onepassword_repo_key }}"
+    dest: "{{ onepassword_repo_key_path }}"
+    mode: "0644"
   become: true
 
 - name: onepassword | package repository
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://downloads.1password.com/linux/debian/amd64 stable main
+    repo: "deb [arch=amd64 signed-by={{ onepassword_repo_key_path }}] {{ onepassword_repo_url }} stable main"
     state: present
     filename: 1password
   become: true

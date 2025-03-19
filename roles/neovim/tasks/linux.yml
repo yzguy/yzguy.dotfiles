@@ -8,7 +8,7 @@
 - name: neovim | repository
   ansible.builtin.apt_repository:
     repo: "{{ neovim_apt_repo }}"
-    codename: "{{ ansible_distribution_release }}"
+    codename: "{{ neovim_codename_mapping[ansible_distribution][ansible_distribution_release] }}"
   become: true
 
 - name: neovim | package

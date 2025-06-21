@@ -1,5 +1,0 @@
----
-- name: ghostty | package
-  ansible.builtin.apt:
-    deb: "{{ ghostty_package_url }}"
-  become: true

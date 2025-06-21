@@ -7,6 +7,12 @@
     file: linux.yml
   when: ansible_system == "Linux"
 
+- name: vscode | settings
+  ansible.builtin.template:
+    src: settings.json.j2
+    dest: "{{ vscode_settings_file[ansible_system] }}"
+    mode: '0644'
+
 - name: vscode | extensions
   ansible.builtin.command: "code --install-extension {{ item }}"
   loop: "{{ vscode_extensions }}"

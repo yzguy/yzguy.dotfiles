@@ -11,7 +11,7 @@
   ansible.builtin.template:
     src: settings.json.j2
     dest: "{{ vscode_settings_file[ansible_system | lower] }}"
-    mode: '0644'
+    mode: "0664"
 
 - name: vscode | extensions
   ansible.builtin.command: "code --install-extension {{ item }}"

@@ -16,7 +16,7 @@
 - name: vscode | settings file
   ansible.builtin.template:
     src: settings.json.j2
-    dest: "{{ vscode_settings_path[ansible_system | lower]/{{ vscode_settings_file }}"
+    dest: "{{ vscode_settings_path[ansible_system | lower] }}/{{ vscode_settings_file }}"
     mode: "0664"
 
 - name: vscode | extensions

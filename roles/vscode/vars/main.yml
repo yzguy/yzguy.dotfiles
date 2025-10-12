@@ -1,5 +1,6 @@
 ---
 vscode_package: visual-studio-code
-vscode_settings_file:
+vscode_settings_path:
   darwin: '~/Library/Application Support/Code/User/settings.json'
   linux: "~/.config/Code/User/settings.json"
+vscode_settings_file: settings.json

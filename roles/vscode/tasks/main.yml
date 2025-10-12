@@ -7,10 +7,16 @@
     file: linux.yml
   when: ansible_system == "Linux"
 
-- name: vscode | settings
+- name: vscode | settings directory
+  ansible.builtin.file:
+    path: "{{ vscode_settings_path[ansible_system | lower] }}"
+    state: directory
+    recurse: yes
+
+- name: vscode | settings file
   ansible.builtin.template:
     src: settings.json.j2
-    dest: "{{ vscode_settings_file[ansible_system | lower] }}"
+    dest: "{{ vscode_settings_path[ansible_system | lower]/{{ vscode_settings_file }}"
     mode: "0664"
 
 - name: vscode | extensions

@@ -1,11 +1,4 @@
 ---
-- name: vscode | signing key
-  ansible.builtin.get_url:
-    url: "{{ vscode_repo_key }}"
-    dest: "{{ vscode_repo_key_path }}"
-    mode: "0644"
-  become: true
-
 - name: vscode | apt repository
   ansible.builtin.deb822_repository:
     name: vscode
@@ -17,9 +10,11 @@
       - amd64
       - arm64
       - armhf
-    signed_by: "{{ vscode_repo_key_path }}"
+    signed_by: "{{ vscode_repo_key }}"
+  become: true
 
 - name: vscode | package
   ansible.builtin.apt:
     update_cache: true
     pkg: "{{ vscode_package[ansible_system | lower] }}"
+  become: true

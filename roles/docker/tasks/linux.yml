@@ -3,7 +3,9 @@
 - ansible.builtin.import_role:
     name: geerlingguy.docker
   vars:
-    docker_install_compose: false
+    docker_install_compose_plugin: true
+    docker_compose_package: docker-compose-plugin
+    docker_compose_package_state: present
     docker_users:
       - "{{ ansible_user_id }}"
   become: true

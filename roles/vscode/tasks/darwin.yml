@@ -1,5 +1,5 @@
 ---
 - name: vscode | package
   community.general.homebrew_cask:
-    name: "{{ vscode_package }}"
+    name: "{{ vscode_package[ansible_system | lower] }}"
     state: present

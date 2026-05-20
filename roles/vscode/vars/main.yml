@@ -1,6 +1,11 @@
 ---
-vscode_package: visual-studio-code
+vscode_package:
+  darwin: visual-studio-code
+  linux: code
 vscode_settings_path:
   darwin: '~/Library/Application Support/Code/User/settings.json'
   linux: "~/.config/Code/User/settings.json"
 vscode_settings_file: settings.json
+vscode_repo_key: https://packages.microsoft.com/keys/microsoft.asc
+vscode_repo_key_path: /usr/share/keyrings/microsoft.gpg
+vscode_repo_url: https://packages.microsoft.com/repos/code

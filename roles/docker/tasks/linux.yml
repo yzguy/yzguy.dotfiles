@@ -1,4 +1,7 @@
 ---
+- ansible.builtin.include_role:
+    name: yzguy.dotfiles.ubuntu_codename
+
 - name: docker | remove obsolete packages
   ansible.builtin.apt:
     name: "{{ docker_obsolete_packages }}"

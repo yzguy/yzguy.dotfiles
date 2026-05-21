@@ -16,7 +16,7 @@
     name: docker
     types: deb
     uris: "{{ docker_repo_url }}"
-    suites: "{{ ansible_distribution_ubuntucodename | default(ansible_distribution_release) }}"
+    suites: "{{ ubuntu_codename }}"
     components: stable
     architectures: "{{ ansible_architecture | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
     signed_by: "{{ docker_repo_url }}/gpg"

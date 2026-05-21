@@ -9,12 +9,6 @@
     state: absent
   become: true
 
-- name: neovim | repository
-  ansible.builtin.apt_repository:
-    repo: "{{ neovim_apt_repo }}"
-    codename: "{{ ubuntu_codename }}"
-  become: true
-
 - name: neovim | package
   ansible.builtin.apt:
     pkg: "{{ neovim_package }}"

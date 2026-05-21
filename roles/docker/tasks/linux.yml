@@ -1,11 +1,36 @@
 ---
+- name: docker | remove obsolete packages
+  ansible.builtin.apt:
+    name: "{{ docker_obsolete_packages }}"
+    state: absent
+  become: true
 
-- ansible.builtin.import_role:
-    name: geerlingguy.docker
-  vars:
-    docker_install_compose_plugin: true
-    docker_compose_package: docker-compose-plugin
-    docker_compose_package_state: present
-    docker_users:
-      - "{{ ansible_user_id }}"
+- name: docker | dependencies
+  ansible.builtin.apt:
+    name: "{{ docker_dependencies }}"
+    state: present
+  become: true
+
+- name: docker | repository
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: deb
+    uris: "{{ docker_repo_url }}"
+    suites: "{{ ansible_distribution_ubuntucodename | default(ansible_distribution_release) }}"
+    components: stable
+    architectures: "{{ ansible_architecture | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}"
+    signed_by: "{{ docker_repo_url }}/gpg"
+  become: true
+
+- name: docker | package
+  ansible.builtin.apt:
+    update_cache: true
+    name: "{{ docker_package.linux }}"
+  become: true
+
+- name: docker | users
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER | default(ansible_user) }}"
+    groups: docker
+    append: true
   become: true

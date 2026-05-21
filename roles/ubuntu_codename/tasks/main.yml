@@ -1,0 +1,6 @@
+---
+
+- name: ubuntu_codename | resolve codename
+  ansible.builtin.setfact:
+    ubuntu_codename: "{{ ubuntu_codename_mapping[ansible_distribution][ansible_distribution_release] | default(ansible_distribution_release) }}"
+

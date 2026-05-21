@@ -12,5 +12,7 @@
 - name: onepassword | package
   ansible.builtin.apt:
     update_cache: true
-    pkg: "{{ onepassword_cli_package }}"
+    pkg:
+      - "{{ onepassword_cli_package }}"
+      - "{{ onepassword_gui_package }}"
   become: true

@@ -11,14 +11,15 @@
     uris: "{{ onepassword_repo_url }}"
     suites: stable
     components: main
-    architectures: amd64
+    architectures: "{{ onepassword_deb_arch }}"
     signed_by: "{{ onepassword_repo_key }}"
   become: true
 
 - name: onepassword | package
   ansible.builtin.apt:
     update_cache: true
-    pkg:
-      - "{{ onepassword_cli_package }}"
-      - "{{ onepassword_gui_package }}"
+    # The 1Password GUI app isn't published for arm64, only the CLI.
+    pkg: >-
+      {{ [onepassword_cli_package] +
+         ([onepassword_gui_package] if onepassword_deb_arch == 'amd64' else []) }}
   become: true

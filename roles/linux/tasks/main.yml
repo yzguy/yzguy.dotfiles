@@ -1,9 +1,14 @@
 ---
+- name: linux | check for gsettings
+  ansible.builtin.stat:
+    path: /usr/bin/gsettings
+  register: gsettings_check
+
 - name: linux | default settings
   shell: "{{ item }}"
   loop: "{{ linux_defaults }}"
   changed_when: false
-  when: linux_defaults
+  when: linux_defaults and gsettings_check.stat.exists
 
 - name: linux | packages
   ansible.builtin.apt:
